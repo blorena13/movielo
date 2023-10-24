@@ -1,10 +1,13 @@
 import { styled } from "styled-components";
 import logo from "/src/assets/movielo-cut.png";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { InfoContext } from "../../context/InfoContext";
 
 function SignIn(){
   const [form, setForm] = useState({email: "", password: ""});
+  const {auth, login} = useContext(InfoContext);
+  const navigate = useNavigate();
 
   function handleForm(e){
     setForm({...form, [e.target.name]: e.target.value});
