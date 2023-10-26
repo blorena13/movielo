@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 function Dashboard(){
@@ -15,11 +16,13 @@ function Dashboard(){
     return(
     <Wrapper>
         {['Trending', 'New Releases', 'Favorites', 'Watch Later', 'Coming Soon'].map((text, index) => (
+            <Link to={`/homepage/${text}`} key={index} style={{textDecoration: "none"}}>
             <div
             onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
             style={{color: hoveredCategory === index ? '#fd424f' : '#FFFFFF', backgroundColor: hoveredCategory === index ? '#222b31' : '#191c1f'}}
             > <p>{text}</p> </div>
+            </Link>
         ))}
        
     </Wrapper>
@@ -31,7 +34,7 @@ export default Dashboard;
 const Wrapper = styled.div`
     background-color: #191c1f;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding-top: 100px;

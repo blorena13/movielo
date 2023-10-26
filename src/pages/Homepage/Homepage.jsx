@@ -1,14 +1,19 @@
 import { styled } from "styled-components";
 import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
+import { Outlet, useParams } from "react-router-dom";
 
 function Homepage() {
+  const { category } = useParams();
+
   return (
     <>
       <Header />
       <Wrapper>
         <Dashboard />
-        <Container></Container>
+        <Container> 
+          <Outlet />
+        </Container>
       </Wrapper>
     </>
   );
@@ -23,6 +28,6 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #222b31;
 `;
