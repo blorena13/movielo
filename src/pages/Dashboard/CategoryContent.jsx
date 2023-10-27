@@ -6,6 +6,7 @@ import NewReleases from "./NewReleases/NewReleases";
 import WatchLater from "./WatchLater/WatchLater";
 import ComingSoon from "./ComingSoon/ComingSoon";
 import Homepage from "../Homepage/Homepage";
+import Popular from "../Homepage/Popular/Popular";
 
 function CategoryContent(){
 const {category} = useParams();
@@ -23,7 +24,7 @@ return(
         :
         category === 'Coming Soon' ? <ComingSoon />
         :
-        <Homepage />}
+        <Popular />}
     </Wrapper>
 )
 }
