@@ -5,7 +5,6 @@ import Favorites from "./Favorites/Favorites";
 import NewReleases from "./NewReleases/NewReleases";
 import WatchLater from "./WatchLater/WatchLater";
 import ComingSoon from "./ComingSoon/ComingSoon";
-import Homepage from "../Homepage/Homepage";
 import Popular from "../Homepage/Popular/Popular";
 
 function CategoryContent(){

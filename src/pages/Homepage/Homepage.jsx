@@ -2,29 +2,31 @@ import { styled } from "styled-components";
 import Dashboard from "../Dashboard/Dashboard";
 import Header from "../Header/Header";
 import { Outlet, useParams } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Card from "./Popular/Card";
+import { useContext, useEffect, useState } from "react";
 import Popular from "./Popular/Popular";
+import { InfoContext } from "../../context/InfoContext";
+import Searching from "./Searching/Searching";
 
 function Homepage() {
   const { category } = useParams();
   const [isDashboard, setDashboard] = useState(false);
+  const { isOpenSearch } = useContext(InfoContext);
 
   useEffect(() => {
-    if(category){
+    if (category) {
       setDashboard(true);
     }
-  },[category]);
+  }, [category]);
 
   return (
     <>
       <Header />
       <Wrapper>
         <Dashboard />
-        <Container>
-          { category ? <Outlet /> : <Popular />}
-        </Container>
+        <Container>{
+          isOpenSearch ? <Searching />
+          :
+        category ? <Outlet /> : <Popular />}</Container>
       </Wrapper>
     </>
   );

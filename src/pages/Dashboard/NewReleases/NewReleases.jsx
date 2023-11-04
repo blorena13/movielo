@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Card from "./Card";
 import { styled } from "styled-components";
+import Card from "../../../components/Card/Card";
 
 function NewReleases(){
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import Card from "./Card";
+import Card from "../../../components/Card/Card";
 
 function Trending(){
     const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;

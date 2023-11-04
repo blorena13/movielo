@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import Card from "./Card";
+import Card from "../../../components/Card/Card";
 
 function Popular() {
   const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
-  const header = "accept: application/json";
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
   const [popular, setPopular] = useState([]);
 
@@ -17,7 +16,7 @@ function Popular() {
         accept: "application/json",
       },
     };
-    const promise = axios.get(url, config, header);
+    const promise = axios.get(url, config);
     promise.then((res) => {
       setPopular(res.data.results);
       console.log(res.data);

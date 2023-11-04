@@ -24,5 +24,6 @@ const Wrapper = styled.div`
         margin-top: 15px;
         font-family: 'Varela Round', sans-serif;
         font-weight: 600;
+        color: #FFFFFF;
     }
 `

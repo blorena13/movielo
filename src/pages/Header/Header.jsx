@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import logo from "/src/assets/image-logo.png";
 import logoName from "/src/assets/image.png";
+import SearchMovie from "./SearchMovie";
 
 function Header() {
   return (
@@ -10,10 +11,7 @@ function Header() {
         <img src={logo} />
       </span>
       <Search>
-        <div>
-          <ion-icon name="search-outline"></ion-icon>
-          <input placeholder="Search movies" />
-        </div>
+        <SearchMovie />
         <UserProfile>
           <p>Lorena Barreto</p>
           <div></div>
@@ -64,23 +62,10 @@ const Search = styled.div`
   justify-content: space-between;
   color: #ffffff;
   margin-left: 40px;
-  div{
-    display: flex;
-    align-items: center;
-  }
-  input {
-    border: none;
-    width: 50%;
-    background-color: #fd424f;
-    outline: none;
-    color: #ffffff;
-    margin-left: 7px;
-  }
-  input::placeholder {
-    color: #ffffff;
-    font-style: bold;
-    font-size: 12px;
-    font-weight: 400;
+
+  div {
+  display: flex;
+  align-items: center;
   }
 `;
 
