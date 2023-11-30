@@ -3,6 +3,7 @@ import logo from "/src/assets/movielo-cut.png";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { InfoContext } from "../../context/InfoContext";
+import axios from "axios";
 
 function SignIn(){
   const [form, setForm] = useState({email: "", password: ""});
@@ -13,10 +14,30 @@ function SignIn(){
     setForm({...form, [e.target.name]: e.target.value});
   }
 
+  function createSession(e) {
+    e.preventDefault();
+
+    const body = {
+      email: form.email,
+      password: form.password
+    };
+
+    const urlPost = `${import.meta.env.VITE_REACT_APP_API_URL}/sign-in`;
+    const promise = axios.post(urlPost, body);
+    promise.then(res => {
+      console.log("foi!")
+      login(response.data)
+      navigate("/homepage");
+    })
+    promise.catch(err => {
+      console.log(err.response.data.mensage);
+    })
+  }
+
     return(
     <Wrapper>
       <p>Login</p>
-      <form>
+      <form onSubmit={createSession}>
         <input
         required
         placeholder="Email"
@@ -33,7 +54,7 @@ function SignIn(){
         value={form.password}
         onChange={handleForm}
         />
-        <button style={{background: "transparent"}}> 
+        <button onClick={()=> {createSession()}} style={{background: "transparent"}}> 
         <img src={logo} alt="Logo"/>
         </button>
       </form>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import imageToBase64 from "image-to-base64/browser";
 
 function SignUp() {
   const [form, setForm] = useState({
@@ -15,9 +16,23 @@ function SignUp() {
     confirmPassword: "",
   });
   const navigate = useNavigate();
+  const [image, setImage] = useState({ imageBase: "" });
 
   function handleForm(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+  }
+  function handleImage(e) {
+    const file = e.target.files[0];
+
+    if (file) {
+      imageToBase64(file)
+        .then((base64) => {
+          setForm({ ...form, profileImage: base64 });
+        })
+        .catch((error) => {
+          console.error("Erro ao converter imagem para base64:", error);
+        });
+    }
   }
 
   function createUser(e) {
@@ -33,13 +48,13 @@ function SignUp() {
 
     const urlPost = `${import.meta.env.VITE_REACT_APP_API_URL}/sign-up`;
     const promise = axios.post(urlPost, body);
-    promise.then(res => {
-      console.log("foi!")
+    promise.then((res) => {
+      console.log("foi!");
       navigate("/");
-    })
-    promise.catch(err => {
+    });
+    promise.catch((err) => {
       console.log(err.response.data.mensagem);
-    })
+    });
   }
 
   return (
@@ -58,10 +73,9 @@ function SignUp() {
         <input
           required
           placeholder="Profile image"
-          type="imagem"
-          name="profileImage"
-          value={form.profileImage}
-          onChange={handleForm}
+          type="file"
+          accept="image/*"
+          onChange={handleImage}
         />
 
         <input
@@ -102,7 +116,10 @@ function SignUp() {
           onChange={handleForm}
         />
 
-        <button onClick={(e)=> createUser(e)} style={{ background: "transparent" }}>
+        <button
+          onClick={(e) => createUser(e)}
+          style={{ background: "transparent" }}
+        >
           <img src={logo} alt="Logo" />
         </button>
       </form>
