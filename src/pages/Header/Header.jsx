@@ -2,8 +2,18 @@ import { styled } from "styled-components";
 import logo from "/src/assets/image-logo.png";
 import logoName from "/src/assets/image.png";
 import SearchMovie from "./SearchMovie";
+import { useEffect, useState } from "react";
 
 function Header() {
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("auth"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
+
   return (
     <Wrapper>
       <span>
@@ -13,8 +23,8 @@ function Header() {
       <Search>
         <SearchMovie />
         <UserProfile>
-          <p>Lorena Barreto</p>
-          <div></div>
+          <p>{user.username}</p>
+          <img src={user.profileImage} alt="User Profile" />
         </UserProfile>
       </Search>
     </Wrapper>

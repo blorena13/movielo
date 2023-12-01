@@ -25,8 +25,8 @@ function SignIn(){
     const urlPost = `${import.meta.env.VITE_REACT_APP_API_URL}/sign-in`;
     const promise = axios.post(urlPost, body);
     promise.then(res => {
-      console.log("foi!")
-      login(response.data)
+      console.log(res.data);
+      login(res.data)
       navigate("/homepage");
     })
     promise.catch(err => {
@@ -54,7 +54,7 @@ function SignIn(){
         value={form.password}
         onChange={handleForm}
         />
-        <button onClick={()=> {createSession()}} style={{background: "transparent"}}> 
+        <button onClick={(e)=> {createSession(e)}} style={{background: "transparent"}}> 
         <img src={logo} alt="Logo"/>
         </button>
       </form>
